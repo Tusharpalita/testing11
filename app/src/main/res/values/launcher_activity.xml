@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="select_image_content_description">Select images icon</string>
+  <string name="select_text">Select images</string>
+  <string name="save_all_multiple">Save all</string>
+  <string name="save_all_single">Save</string>
+  <string name="reselect_image_content_description">Select new images icon</string>
+  <string name="reselect_text">Select new images</string>
+
+  <color name="output_list_scrim">#33000000</color>
+  <color name="save_all_text">#FFFFFF</color>
+
+  <dimen name="save_all_bar_shadow_height">8dp</dimen>
+</resources>

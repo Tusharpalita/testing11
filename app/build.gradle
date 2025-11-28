@@ -1,0 +1,96 @@
+// Manifest version information!
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 3
+def versionBuild = 0
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+  namespace 'com.nightlynexus.backgroundremover'
+
+  compileSdk versions.compileSdk
+
+  defaultConfig {
+    applicationId namespace
+
+    minSdkVersion 29
+    targetSdkVersion 36
+
+    versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
+    versionName "$versionMajor.$versionMinor.$versionPatch"
+  }
+
+
+    buildFeatures {
+        viewBinding true
+    }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+
+  lint {
+    abortOnError true
+    warningsAsErrors true
+    lintConfig rootProject.file('lint.xml')
+    textReport true
+    htmlReport true
+    htmlOutput rootProject.file("lint-reports/${name}.html")
+    // We run a full lint analysis as build part in CI, so skip vital checks for assemble tasks.
+    checkReleaseBuilds false
+  }
+
+  buildTypes {
+  }
+
+  productFlavors {
+    flavorDimensions = ['environment']
+
+    internal {
+      applicationIdSuffix '.internal'
+      versionNameSuffix '-internal'
+    }
+
+    production {
+    }
+  }
+
+  applicationVariants.configureEach { variant ->
+    variant.outputs.configureEach { output ->
+      outputFileName = "Background Remover ${variant.versionCode}.apk"
+      if (variant.flavorName == 'internal') {
+        outputFileName = 'Internal ' + outputFileName
+      }
+    }
+  }
+}
+
+dependencies {
+  implementation 'com.google.android.gms:play-services-mlkit-subject-segmentation:16.0.0-beta1'
+    implementation 'com.github.bumptech.glide:glide:5.0.5'
+  implementation deps.material
+  implementation deps.androidx.activity
+  implementation deps.androidx.annotations
+  implementation deps.androidx.appcompat
+  implementation deps.androidx.collection
+  implementation deps.androidx.core
+  implementation deps.androidx.fragment
+  implementation deps.androidx.lifecycleLivedataCore
+  implementation deps.androidx.lifecycleRuntime
+  implementation deps.androidx.lifecycleViewmodel
+  implementation deps.androidx.recyclerview
+  implementation deps.androidx.savedstate
+  implementation deps.kotlin.stdlibJdk8
+
+  internalImplementation deps.diskcrashreporter
+  internalImplementation deps.leakcanary
+
+  testImplementation deps.junit
+  testImplementation deps.truth
+}
