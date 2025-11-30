@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- SCROLL VIEW CONTENT -->
+    <!-- MAIN SCROLL AREA -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -15,55 +15,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:gravity="center_horizontal">
 
-            <!-- ⭐ 1:1 Preview Box -->
+            <!-- PREVIEW IMAGE -->
+            <ImageView
+                android:id="@+id/outputImage"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:scaleType="fitCenter" />
 
+            <!-- PROGRESS BAR -->
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/outputImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp"
-
-                    />
-
-                <ProgressBar
-                    android:id="@+id/progress"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:visibility="gone" />
-
-
-            <!-- ⭐ Shadow Controls (Show only when shadow color selected) -->
+            <!-- SHADOW CONTROLS -->
             <LinearLayout
                 android:id="@+id/shadowControlsLayout"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginTop="16dp">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Shadow Colors"
                     android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textSize="15sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/colorRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="10dp" />
 
                 <TextView
-                    android:text="Blur (Shadow Size)"
-                    android:textSize="14sp"
-                    android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Blur Size"
+                    android:textSize="14sp"
+                    android:layout_marginTop="15dp" />
 
                 <SeekBar
                     android:id="@+id/blurSeekBar"
@@ -73,11 +70,11 @@
                     android:progress="70" />
 
                 <TextView
-                    android:text="Shadow Opacity"
-                    android:textSize="14sp"
-                    android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Opacity"
+                    android:textSize="14sp"
+                    android:layout_marginTop="15dp" />
 
                 <SeekBar
                     android:id="@+id/opacitySeekBar"
@@ -85,91 +82,109 @@
                     android:layout_height="wrap_content"
                     android:max="100"
                     android:progress="80" />
+
             </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
 
-
-    <!-- ⭐ Bottom Navigation Bar -->
+    <!-- BOTTOM NAVIGATION -->
     <LinearLayout
-        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#FFFFFF"
+        android:orientation="horizontal"
         android:weightSum="4"
-        android:orientation="horizontal">
+        android:background="#FFFFFF">
 
-        <!-- Auto Shadow -->
+        <!-- AUTO SHADOW -->
         <LinearLayout
             android:id="@+id/navAuto"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/circle_bg"/>
+                android:src="@drawable/circle_bg" />
+
             <TextView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:text="Auto Shadow" android:textSize="12sp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto"
+                android:textSize="12sp" />
+
         </LinearLayout>
 
-        <!-- Background -->
+        <!-- OUTLINE -->
         <LinearLayout
             android:id="@+id/navBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/circle_bg"/>
+                android:src="@drawable/circle_bg" />
+
             <TextView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:text="Background" android:textSize="12sp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outline"
+                android:textSize="12sp" />
+
         </LinearLayout>
 
-        <!-- Select Image -->
+        <!-- SELECT -->
         <LinearLayout
             android:id="@+id/navSelect"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/circle_bg"/>
+                android:src="@drawable/circle_bg" />
+
             <TextView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:text="Select Image" android:textSize="12sp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textSize="12sp" />
+
         </LinearLayout>
 
-        <!-- Shadow Color -->
+        <!-- SHADOW -->
         <LinearLayout
             android:id="@+id/navColor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/circle_bg"/>
+                android:src="@drawable/circle_bg" />
+
             <TextView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:text="Shadow Color" android:textSize="12sp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shadow"
+                android:textSize="12sp" />
+
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

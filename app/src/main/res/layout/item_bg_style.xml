@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="90dp"
+    android:layout_height="90dp"
+    android:layout_margin="6dp"
+    android:background="@drawable/preview_border"
+    android:padding="6dp">
+
+    <ImageView
+        android:id="@+id/bgPreviewImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+</FrameLayout>
